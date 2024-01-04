@@ -1,33 +1,51 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import {ethers} from 'ethers'
+import Upload from './artifacts/contracts/Upload.sol/Upload.json'
+
+import Display from './components/Display'
+import FileUpload from './components/FileUpload'
+import Modal from './components/Modal'
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [account, setAccount]= useState('');
+  const[contract, setContract]= useState(null);
+  const[provider, setProvider]= useState(null);
+  const[modalOpen, SetModalOpen]= useState(false);
+
+  useEffect(()=>{
+    const provider = new ethers.BrowserProvider(window.ethereum);
+   const wallet= async()=>{
+
+    if(provider){
+      // await provider.send("eth_requestAccount",[]);
+       const signer = provider.getSigner();
+       const address = (await signer).getAddress();
+       console.log(address);
+       setAccount(address);
+       const contractAddress= "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+       const contract = new ethers.Contract(contractAddress,Upload.abi, signer);
+       console.log(contract);
+       setContract(contract);
+       setProvider(signer);
+    } else{
+      alert("Cannot Recognise Metamask!")
+    }
+    
+   }
+
+   provider && wallet()
+
+  },[])
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+     
     </>
   )
 }

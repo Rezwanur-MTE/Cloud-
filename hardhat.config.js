@@ -11,6 +11,11 @@ module.exports = {
       }
     }
   },
+  networks: {
+    hardhat: {
+      chainId: 31337,
+    },
+  },
 
   paths:{
     artifacts:"./client/Edgecloud/src/artifacts",
@@ -18,3 +23,4 @@ module.exports = {
 
 };
 
+//0x5FbDB2315678afecb367f032d93F642f64180aa3
