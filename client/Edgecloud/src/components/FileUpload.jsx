@@ -1,10 +1,10 @@
 import { useState } from "react";
-import axios from "axios"
-import './FileUpload.css'
+import axios from "axios";
+import './FileUpload.css';
 const FileUpload=({contract, account, provider})=>{
     const [file, setFile]= useState(null);
     const [fileName, setFileName]= useState("No image selected");
-    const handleSubmit= async(a)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault();
         if(file){
             try{
@@ -15,17 +15,18 @@ const FileUpload=({contract, account, provider})=>{
                     url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                     data: formData,
                     headers:{
-                        pinata_api_key:`Enter your key`,
-                        pinata_secret_api_key:`Enter your secret key`,
+                        pinata_api_key:`11ec46ebbbdeae3b5451`,
+                        pinata_secret_api_key:`029940833a9b9f7caef7d0f292a77e82406920fb99ce1e2f0349f2cd143e3dff`,
                         "Content-Type": "multipart/form-data",
                     },
                 });
 
                 const ImgHash=`https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
-                contract.add(account.ImgHash);
+                contract.add(account,ImgHash);
                 alert("Sucessfully Data Uploaded");
                 setFileName("No image selected");
                 setFile(null);
+                console.log(ImgHash);
 
             } catch(e){
 
@@ -50,6 +51,7 @@ const FileUpload=({contract, account, provider})=>{
         };
         setFileName(e.target.files[0].name);
         e.preventDefault();
+        console.log(e.target.files[0].name);
     };
 
 
@@ -57,7 +59,7 @@ const FileUpload=({contract, account, provider})=>{
         <div className="top">
             <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="file-upload" className="choose">
-                    Choose Image
+                    Choose File
                 </label>
                 <input disabled={!account}
                        type="file"
