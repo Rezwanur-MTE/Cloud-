@@ -72,3 +72,5 @@ function App() {
 }
 
 export default App
+
+// followed this : https://www.youtube.com/watch?v=M-KRLlHG_zs&list=LL&index=7
