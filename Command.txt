@@ -1,0 +1,26 @@
+To istall hardhat : 
+npm install hardhat
+
+including hardhat to current project : 
+npx hardhat
+
+install vite :
+npm create vite@latest
+
+install hardhat dependencies :
+npm install @nomicfoundation/hardhat-toolbox
+
+
+Running Blockchain at hardhat node:  
+npx hardhat node
+
+
+Now, Deploying our smartcontract on this hardhat node: 
+npx hardhat run --network localhost scripts/deploy.js
+
+install axios in react development folder :
+npm install axios
+
+npm run dev
+
+remix ide 
