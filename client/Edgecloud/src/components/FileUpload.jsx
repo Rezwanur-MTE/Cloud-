@@ -23,6 +23,7 @@ const FileUpload=({contract, account, provider})=>{
 
                 const ImgHash=`https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
                 contract.add(account,ImgHash);
+                console.log(contract)
                 alert("Sucessfully Data Uploaded");
                 setFileName("No image selected");
                 setFile(null);

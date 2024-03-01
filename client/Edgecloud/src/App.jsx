@@ -13,7 +13,7 @@ import Modal from './components/Modal'
 function App() {
   const [count, setCount] = useState(0);
   const [account, setAccount]= useState('');
-  const[contract, setContract]= useState(null);
+  const[contract, setContract]= useState([]);
   const[provider, setProvider]= useState(null);
   const[modalOpen, setModalOpen]= useState(false);
 
@@ -29,7 +29,7 @@ function App() {
        const address =await signer.getAddress();
        console.log(address);
        setAccount(address);
-       const contractAddress= "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+       const contractAddress= "0xB9dE16f9B2912De99837903BD646c21B74C92b4d";
        const contract = new ethers.Contract(contractAddress,Upload.abi, signer);
        console.log(contract);
        setContract(contract);

@@ -33,7 +33,7 @@ const Display = ({ contract, account }) => {
     if(!isEmpty){
         const images=dataArray.map((item, i)=>{
             return(
-                <a href={item} key={`a-${i}`} target="_blank" rel="noopener noreferrer">
+                <a href={item} key={`a-${i}`} target="_blank" >
                     <img key={`img-${i}`}
                          src={item}
                          alt="photo here"
