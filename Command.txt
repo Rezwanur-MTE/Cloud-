@@ -14,6 +14,8 @@ npm install @nomicfoundation/hardhat-toolbox
 Running Blockchain at hardhat node:  
 npx hardhat node
 
+install ether.js :
+npm install --save ethers
 
 Now, Deploying our smartcontract on this hardhat node: 
 npx hardhat run --network localhost scripts/deploy.js
